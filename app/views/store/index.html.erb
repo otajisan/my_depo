@@ -3,7 +3,7 @@
     <p>Find me in app/views/store/index.html.erb</p>
 <% end %>
 
-<h1>Pragmaticカタログ</h1>
+<h1>Pragmaticカタログ<%= session[:counter] > 5 ? '(' + session[:counter].to_s + '回目の訪問です)' : '' %></h1>
 
 <% @products.each do |product| %>
     <div class="entry">
@@ -12,6 +12,7 @@
         <%= sanitize(product.description) %>
         <div class="price_line">
             <span class="price"><%= number_to_currency(product.price) %></span>
+            <%= button_to 'カートに入れる', line_items_path(product_id: product) %>
         </div>
     </div>
 <% end %>
